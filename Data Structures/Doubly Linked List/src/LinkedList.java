@@ -20,6 +20,8 @@ class LinkedList {
     private Node tailNode;
     private Node currentNode;
 
+    // Constructors
+
     LinkedList() {
         numItems = 0;
         headNode = null;
@@ -29,6 +31,33 @@ class LinkedList {
 
     LinkedList(Node firstNode) {
         initFirstNode(firstNode);
+    }
+
+    private void initFirstNode(Node inNode) {
+        numItems = 1;
+        headNode = tailNode = currentNode = inNode;
+    }
+
+    // Traversal
+
+    void front() {
+        currentNode = headNode;
+    }
+
+    void back() {
+        currentNode = tailNode;
+    }
+
+    void advance() {
+        if (currentNode != tailNode) {
+            currentNode = currentNode.nextNode;
+        }
+    }
+
+    void retreat() {
+        if (currentNode != headNode) {
+            currentNode = currentNode.prevNode;
+        }
     }
 
     // Getters
@@ -50,11 +79,6 @@ class LinkedList {
     }
 
     // Operations
-
-    private void initFirstNode(Node inNode) {
-        numItems = 1;
-        headNode = tailNode = currentNode = inNode;
-    }
 
     void pushFront(int inID, String inName) {
         Node newNode = new Node(inID,inName);
@@ -137,11 +161,80 @@ class LinkedList {
         currentNode = currentNode.prevNode;
     }
 
-    void printList() {
-        for (Node iterator = headNode; iterator != tailNode.nextNode; iterator = iterator.nextNode) {
-            System.out.print(iterator.data_name + "\n");
+    void clearList() {
+        front();
+        while (currentNode.nextNode != null) {
+            advance();
+            currentNode.prevNode = null;
+            numItems--;
         }
     }
+
+    // Console
+
+    void printCurrent() {
+        System.out.print("Current Node Name: " + currentNode.data_name + "\n");
+        System.out.print("Current Node ID: " + currentNode.data_ID + "\n");
+    }
+
+    void printNode(Node argNode) {
+        System.out.print("Name: " + argNode.data_name + "\n");
+        System.out.print("ID: " + argNode.data_ID + "\n");
+    }
+
+    void printList() {
+        for (Node iterator = headNode; iterator != tailNode.nextNode; iterator = iterator.nextNode) {
+            printNode(iterator);
+        }
+    }
+
+    // Bolleans
+
+    boolean isEmptyList() {
+        return numItems == 0;
+    }
+
+    boolean isEmptyNode() {
+        return currentNode == null;
+    }
+
+    boolean isEmptyNode(Node argNode) {
+        return argNode == null;
+    }
+
+    // Algorithms
+
+    void reverseList() {
+        Node frontIterator = headNode;
+        Node backIterator = tailNode;
+        int count = 0;
+        Node temp;
+
+        while (count < numItems / 2) {
+            temp = frontIterator;
+            frontIterator = backIterator;
+            backIterator = temp;
+            frontIterator = frontIterator.nextNode;
+            backIterator = backIterator.prevNode;
+            count++;
+        }
+
+    }
+
+    // To-Do
+    void sort() {
+
+    }
+
+    Node search(int searchID) {
+       for (Node iterator = headNode; iterator != tailNode.nextNode; iterator = iterator.nextNode) {
+           if (iterator.data_ID == searchID) {
+               return iterator;
+           }
+       }
+       return null;
+    }
+
 }
 
 class main {
