@@ -32,7 +32,12 @@ class BinarySearchTree {
 
     void add(int inID, String inName) {
         Node newNode = new Node(inID, inName);
-        add(newNode, root);
+        if (size == 0) {
+            root = newNode;
+        }
+        else {
+            add(newNode, root);
+        }
     }
 
     private void add(Node newNode, Node parent) {
@@ -66,11 +71,40 @@ class BinarySearchTree {
             return null;
         }
     }
+
+    void print() {
+        print(root);
+    }
+
+    private void print(Node parent) {
+        if (parent != null) {
+            print(parent.leftChild);
+            System.out.print("ID: " + parent.ID);
+            System.out.print("Name: " + parent.name);
+            print(parent.rightChild);
+        }
+    }
+
+    int size() {
+        return size;
+    }
+
+    Node root() {
+        return root;
+    }
+
 }
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+
+	    BinarySearchTree userTree = new BinarySearchTree();
+	    userTree.add(848120769, "Mason");
+	    userTree.add(707291667, "Lydia");
+	    userTree.add(999999399, "Peter");
+	    userTree.add(292166837, "Emmy");
+	    userTree.print();
+
     }
 }
