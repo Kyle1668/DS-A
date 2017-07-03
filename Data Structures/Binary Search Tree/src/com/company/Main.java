@@ -34,6 +34,7 @@ class BinarySearchTree {
         Node newNode = new Node(inID, inName);
         if (size == 0) {
             root = newNode;
+            size++;
         }
         else {
             add(newNode, root);
@@ -55,6 +56,10 @@ class BinarySearchTree {
 
     Node search(int userID) {
         return search(userID, root);
+    }
+
+    boolean exists(int userID) {
+        return search(userID, root) != null;
     }
 
     private Node search(int userID, Node parent) {
@@ -79,8 +84,8 @@ class BinarySearchTree {
     private void print(Node parent) {
         if (parent != null) {
             print(parent.leftChild);
-            System.out.print("ID: " + parent.ID);
-            System.out.print("Name: " + parent.name);
+            System.out.print("ID: " + parent.ID + "\n");
+            System.out.print("Name: " + parent.name + "\n");
             print(parent.rightChild);
         }
     }
