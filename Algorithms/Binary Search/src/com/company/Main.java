@@ -15,13 +15,11 @@ public class Main {
                 return true;
             }
             else if (mid > target) {
-                set = Arrays.copyOfRange(set, 0, (set.length) / 2);
+                set = Arrays.copyOfRange(set, 0, set.length / 2);
                 return binarySearch(set, target);
             }
             else {
-                int lowerBound = (set.length) / 2;
-                int upperBound = set.length - 1;
-                set = Arrays.copyOfRange(set, lowerBound, upperBound);
+                set = Arrays.copyOfRange(set, set.length / 2, set.length - 1);
                 return binarySearch(set, target);
             }
         }
