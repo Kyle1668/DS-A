@@ -6,9 +6,9 @@ public class Main {
         int temp;
         int position;
         boolean inserted;
-        for (int i = 1; i < inNums.length; i++) {
-            if (inNums[i] < inNums[i - 1]) {
-                position = i;
+        for (int current = 1; current < inNums.length; current++) {
+            if (inNums[current] < inNums[current - 1]) {
+                position = current;
                 inserted = false;
                 while (!inserted) {
                     if (position == 0 || inNums[position] >= inNums[position - 1]) {
