@@ -6,7 +6,7 @@ public class Main {
         mergeSort(inNums, new int[inNums.length], 0, inNums.length - 1);
     }
 
-    public static void mergeSort(int[] inNums, int[] tempArray, int lowerBound, int upperBound) {
+    private static void mergeSort(int[] inNums, int[] tempArray, int lowerBound, int upperBound) {
         if (lowerBound >= upperBound) {
             return;
         }
@@ -16,7 +16,7 @@ public class Main {
         mergeHalves(inNums, tempArray, lowerBound, upperBound);
     }
 
-    public static void mergeHalves(int[] inNums, int[] tempArray, int lowerBound, int upperBound) {
+    private static void mergeHalves(int[] inNums, int[] tempArray, int lowerBound, int upperBound) {
         int leftEnd = (lowerBound + upperBound) / 2;
         int rightStart = leftEnd + 1;
         int size = upperBound - lowerBound + 1;
