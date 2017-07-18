@@ -1,7 +1,8 @@
 package com.company;
 
 class Stack {
-    private class Node {
+
+    class Node {
         int userID;
         String userName;
         Node previousNode;
@@ -74,6 +75,22 @@ class Stack {
         }
     }
 
+    Node search(int target) {
+        return numItems == 0 ? null : search(target, top);
+    }
+
+    private Node search(int target, Node current) {
+        if (current.userID == target) {
+            return current;
+        }
+        else if (current.previousNode != null) {
+            return search(target, current.previousNode);
+        }
+        else {
+            return null;
+        }
+    }
+
 }
 
 public class Main {
@@ -89,6 +106,9 @@ public class Main {
         users.push(707282463, "Emmy O'Brien");
 
         users.print();
+
+        System.out.print("\n" + "Search for 12345678: " + users.search(12345678).userName + "\n");
+        System.out.print("\n" + "Search for 848120769: " + users.search(848120769).userName + "\n");
 
     }
 }
