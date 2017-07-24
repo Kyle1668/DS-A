@@ -12,6 +12,11 @@ class Queue {
             userName = name;
         }
 
+        void print() {
+            System.out.print("\n" + "ID: " + userID + "\n");
+            System.out.print("\n" + "ID: " + userName  + "\n");
+        }
+
     }
 
     private int length;
@@ -57,12 +62,23 @@ class Queue {
     boolean isEmpty() {
         return length == 0;
     }
+
+    void print() {
+        print(front);
+    }
+
+    private void print(Node current) {
+        if (current != null) {
+            current.print();
+            print(current.previousNode);
+        }
+    }
     
 }
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+
     }
 }
