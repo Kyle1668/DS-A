@@ -3,9 +3,10 @@ package com.company;
 class Queue {
 
     class Node {
+        
         int userID;
         String userName;
-        Node previousNode;
+        Node nextNode;
 
         Node(int id, String name) {
             userID = id;
@@ -14,7 +15,7 @@ class Queue {
 
         void print() {
             System.out.print("\n" + "ID: " + userID + "\n");
-            System.out.print("\n" + "ID: " + userName  + "\n");
+            System.out.print("Name: " + userName  + "\n");
         }
 
     }
@@ -43,15 +44,28 @@ class Queue {
             initFirstNode(inID, inName);
         }
         else {
-            rear.previousNode = new Node(inID, inName);
+            rear.nextNode = new Node(inID, inName);
+            rear = rear.nextNode;
             length++;
         }
     }
 
     void dequeue() {
         if (length != 0) {
-            front = front.previousNode;
+            front = front.nextNode;
             length--;
+        }
+    }
+
+    void clear() {
+        clear(front);
+    }
+
+    private void clear(Node current) {
+        if (current != null) {
+            current = current.nextNode;
+            length--;
+            clear(current);
         }
     }
 
@@ -70,15 +84,30 @@ class Queue {
     private void print(Node current) {
         if (current != null) {
             current.print();
-            print(current.previousNode);
+            print(current.nextNode);
         }
     }
-    
+
 }
 
 public class Main {
 
     public static void main(String[] args) {
+
+        Queue users = new Queue();
+
+        users.enqueue(848120769, "Kyle");
+        users.enqueue(707832172, "Lydia");
+        users.enqueue(707292014, "Peter");
+        users.enqueue(124986311, "Donna");
+        users.enqueue(937491068, "Emmy");
+
+        users.print();
+
+        users.dequeue();
+        users.dequeue();
+
+        users.print();
 
     }
 }
