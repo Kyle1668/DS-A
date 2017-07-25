@@ -3,7 +3,7 @@ package com.company;
 class Queue {
 
     class Node {
-        
+
         int userID;
         String userName;
         Node nextNode;
@@ -88,6 +88,19 @@ class Queue {
         }
     }
 
+    Node get(int targetID) {
+        return get(targetID, front);
+    }
+
+    private Node get(int targetID, Node current) {
+        if (current != null) {
+            return current.userID == targetID ? current : get(targetID, current.nextNode);
+        }
+        else {
+            return null;
+        }
+    }
+
 }
 
 public class Main {
@@ -104,10 +117,8 @@ public class Main {
 
         users.print();
 
-        users.dequeue();
-        users.dequeue();
-
-        users.print();
+        users.get(848120769).print();
+        users.get(124986311).print();
 
     }
 }
