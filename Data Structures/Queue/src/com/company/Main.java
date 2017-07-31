@@ -101,6 +101,10 @@ class Queue {
         }
     }
 
+    boolean userExists(int targetID) {
+        return get(targetID, front) != null;
+    }
+
 }
 
 public class Main {
@@ -119,6 +123,10 @@ public class Main {
 
         users.get(848120769).print();
         users.get(124986311).print();
+
+        users.clear();
+
+        System.out.print("Exists: " + users.userExists(707292014));
 
     }
 }
