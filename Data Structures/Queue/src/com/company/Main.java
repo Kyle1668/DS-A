@@ -63,7 +63,7 @@ class Queue {
 
     private void clear(Node current) {
         if (current != null) {
-            current = current.nextNode;
+            current = front = current.nextNode;
             length--;
             clear(current);
         }
@@ -126,7 +126,7 @@ public class Main {
 
         users.clear();
 
-        System.out.print("Exists: " + users.userExists(707292014));
+        System.out.print("Exists: " + users.userExists(707832172));
 
     }
 }
